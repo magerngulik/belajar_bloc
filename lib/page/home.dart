@@ -3,101 +3,95 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
-    Counter myCounter = Counter();
+    Counter myCounter = BlocProvider.of<Counter>(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("BLOC BUILDER"),
+        title: const Text("BLOC PROVIDER"),
         actions: const [],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // BlocListener<Counter, int>(
-          //   bloc: myCounter,
-          //   listenWhen: (previous, current) {
-          //     if (current > 10) {
-          //       return true;
-          //     } else {
-          //       return false;
-          //     }
-          //   },
-          //   listener: (ctx, state) {
-          //     ScaffoldMessenger.of(ctx).showSnackBar(const SnackBar(
-          //         duration: Duration(seconds: 1),
-          //         content: Text('Data sudah melebihi kapasitas!')));
-          //   },
-          //   child: BlocBuilder<Counter, int>(
-          //     bloc: myCounter,
-          //     buildWhen: (previous, current) {
-          //       return true;
-          //     },
-          //     builder: (context, state) {
-          //       return Text(
-          //         "$state",
-          //         style: const TextStyle(
-          //           fontSize: 30.0,
-          //           color: Colors.red,
-          //         ),
-          //       );
-          //     },
-          //   ),
-          // ),
-          BlocConsumer<Counter, int>(
-            bloc: myCounter,
-            listenWhen: (previous, current) {
-              return false;
-            },
-            listener: (context, state) {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text(
-                  "Kondisi terpenuhi",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                  ),
-                ),
-              ));
-            },
-            buildWhen: (previous, current) {
-              if (current > 0) {
-                return true;
-              } else {
-                return false;
-              }
-            },
-            builder: (context, state) {
-              return Text(
-                "$state",
-                style: const TextStyle(
-                  fontSize: 30.0,
-                  color: Colors.red,
-                ),
-              );
-            },
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              IconButton(
-                onPressed: () {
-                  myCounter.kurangData();
-                },
-                icon: const Icon(
-                  Icons.remove,
-                  size: 24.0,
+              Material(
+                color: Colors.blue,
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(12.0),
+                ),
+                child: InkWell(
+                  onTap: () => myCounter.kurangData(),
+                  child: const SizedBox(
+                    height: 100,
+                    width: 70,
+                    child: Center(
+                      child: Icon(
+                        Icons.remove,
+                        size: 24.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                 ),
               ),
-              IconButton(
-                onPressed: () => myCounter.tambahData(),
-                icon: const Icon(
-                  Icons.add,
-                  size: 24.0,
+              const SizedBox(
+                width: 10.0,
+              ),
+              Container(
+                height: 100.0,
+                width: 200,
+                decoration: const BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(
+                      16.0,
+                    ),
+                  ),
+                ),
+                child: Center(
+                  child: BlocBuilder<Counter, int>(
+                    bloc: myCounter,
+                    builder: (context, state) {
+                      return Text(
+                        "$state",
+                        style: const TextStyle(
+                          fontSize: 30.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
+              const SizedBox(
+                width: 10.0,
+              ),
+              Material(
+                color: Colors.blue,
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(12.0),
+                ),
+                child: InkWell(
+                  onTap: () => myCounter.tambahData(),
+                  child: const SizedBox(
+                    height: 100,
+                    width: 70,
+                    child: Center(
+                      child: Icon(
+                        Icons.add,
+                        size: 24.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ],
