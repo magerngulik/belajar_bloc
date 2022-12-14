@@ -1,5 +1,6 @@
 import 'package:counter_apk_bloc/bloc/theme.dart';
 import 'package:counter_apk_bloc/page/home.dart';
+import 'package:counter_apk_bloc/page/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,7 +13,7 @@ class App extends StatelessWidget {
       bloc: context.read<ThemeBloc>(),
       builder: (context, state) {
         return MaterialApp(
-          home: HomePage(),
+          home: Profile(),
           theme: (state) ? ThemeData.light() : ThemeData.dark(),
         );
       },
