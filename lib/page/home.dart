@@ -101,15 +101,6 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          //
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //       builder: (context) => BlocProvider.value(
-          //             value: myCounter,
-          //             child: Other(),
-          //           )),
-          // );
           Navigator.pushNamed(context, "other");
         },
       ),

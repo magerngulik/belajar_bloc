@@ -17,22 +17,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        // home: BlocProvider(
-        //   create: (context) => Counter(),
-        //   child: HomePage(),
-        // ),
-        initialRoute: "/",
-        routes: {
-          "/": (context) {
-            return BlocProvider.value(
+      // home: BlocProvider(
+      //   create: (context) => Counter(),
+      //   child: HomePage(),
+      // ),
+      initialRoute: "/",
+      routes: {
+        "/": (context) => BlocProvider.value(
               value: myCounter,
               child: HomePage(),
-            );
-          },
-          "other": (context) => BlocProvider.value(
-                value: myCounter,
-                child: Other(),
-              )
-        });
+            ),
+        "other": (context) => BlocProvider.value(
+              value: myCounter,
+              child: Other(),
+            )
+      },
+    );
   }
 }
