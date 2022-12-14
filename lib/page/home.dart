@@ -101,7 +101,7 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          Navigator.pushNamed(context, "other");
+          Navigator.pushNamed(context, "/other");
         },
       ),
     );
