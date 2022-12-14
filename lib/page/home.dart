@@ -1,11 +1,13 @@
 import 'package:counter_apk_bloc/bloc/counter.dart';
+import 'package:counter_apk_bloc/page/other.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Counter myCounter = BlocProvider.of<Counter>(context);
+    // Counter myCounter = BlocProvider.of<Counter>(context);
+    Counter myCounter = context.read<Counter>();
 
     return Scaffold(
       appBar: AppBar(
@@ -55,7 +57,7 @@ class HomePage extends StatelessWidget {
                 ),
                 child: Center(
                   child: BlocBuilder<Counter, int>(
-                    bloc: myCounter,
+                    bloc: BlocProvider.of<Counter>(context),
                     builder: (context, state) {
                       return Text(
                         "$state",
@@ -95,6 +97,21 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          //
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //       builder: (context) => BlocProvider.value(
+          //             value: myCounter,
+          //             child: Other(),
+          //           )),
+          // );
+          Navigator.pushNamed(context, "other");
+        },
       ),
     );
   }
