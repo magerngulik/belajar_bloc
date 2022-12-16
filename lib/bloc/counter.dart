@@ -1,16 +1,26 @@
-import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-enum CounterEvent { decrement, increment }
+import 'counter_event.dart';
 
 class CounterBloc extends Bloc<CounterEvent, int> {
   CounterBloc() : super(0) {
-    on<CounterEvent>((event, emit) {
-      if (event == CounterEvent.increment) {
-        emit(state + 1);
-      } else {
-        emit(state - 1);
+    on<Increment>((event, emit) {
+      emit(state + 1 * event.value);
+    });
+
+    on<Decrement>((event, emit) {
+      emit(state - 1);
+    });
+  }
+}
+
+enum ThemeEvent { themeLight, themeDark }
+
+class ThemeBloc extends Bloc<ThemeEvent, bool> {
+  ThemeBloc() : super(true) {
+    on<ThemeEvent>((event, emit) {
+      if (event == ThemeEvent.themeDark) {
+        emit(!state);
       }
     });
   }

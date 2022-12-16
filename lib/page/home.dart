@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:counter_apk_bloc/bloc/counter.dart';
+import 'package:counter_apk_bloc/bloc/counter_event.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -11,11 +10,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CounterBloc myCounter = context.read<CounterBloc>();
+    ThemeBloc myTheme = context.read<ThemeBloc>();
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: Text(
-          "Counter Page",
+          "Main Screen",
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
@@ -31,7 +30,7 @@ class HomePage extends StatelessWidget {
               builder: (context, state) {
                 return Text(
                   "$state",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 50.0,
                     fontWeight: FontWeight.bold,
                   ),
@@ -42,19 +41,33 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
-                    onPressed: () {
-                      myCounter.add(CounterEvent.decrement);
-                    },
-                    icon: Icon(Icons.remove)),
+                  onPressed: () {
+                    myCounter.add(Decrement());
+                  },
+                  icon: Icon(
+                    Icons.remove,
+                    size: 24.0,
+                  ),
+                ),
                 IconButton(
-                    onPressed: () {
-                      myCounter.add(CounterEvent.increment);
-                    },
-                    icon: Icon(Icons.add))
+                  onPressed: () {
+                    myCounter.add(Increment(value: 10));
+                  },
+                  icon: Icon(
+                    Icons.add,
+                    size: 24.0,
+                  ),
+                ),
               ],
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.refresh),
+        onPressed: () {
+          myTheme.add(ThemeEvent.themeDark);
+        },
       ),
     );
   }
