@@ -1,6 +1,8 @@
 import 'package:counter_apk_bloc/bloc/counter.dart';
+import 'package:counter_apk_bloc/bloc/user/user_bloc.dart';
 import 'package:counter_apk_bloc/general_observer.dart';
 import 'package:counter_apk_bloc/page/home.dart';
+import 'package:counter_apk_bloc/page/page_data/home/home_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,13 +25,16 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => myTheme,
         ),
+        BlocProvider(
+          create: (context) => UserBloc(),
+        )
       ],
       child: BlocBuilder<ThemeBloc, bool>(
         bloc: myTheme,
         builder: (context, state) {
           return MaterialApp(
             theme: (state) ? ThemeData.light() : ThemeData.dark(),
-            home: HomePage(),
+            home: HomePageList(),
           );
         },
       ),

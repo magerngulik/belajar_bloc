@@ -30,10 +30,21 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   bloc: ^8.1.0
+  cloud_firestore: ^3.4.9
   cupertino_icons: ^1.0.2
+  dio: ^4.0.6
+  equatable: ^2.0.5
+  firebase_auth: ^3.10.0
+  firebase_core: ^1.23.0
+  firebase_messaging: ^13.0.3
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
+  google_fonts: ^3.0.1
+  image_picker: ^0.8.6
+  intl: ^0.17.0
+  json_annotation: ^4.7.0
+  path_provider: ^2.0.11
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -44,7 +55,6 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

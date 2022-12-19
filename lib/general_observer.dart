@@ -23,7 +23,6 @@ class MyBlocObserver extends BlocObserver {
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
     // TODO: implement onChange
-
     print("$bloc => $transition");
   }
 }
