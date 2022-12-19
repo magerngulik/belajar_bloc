@@ -8,6 +8,14 @@ part 'product_state.dart';
 
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
   ProductBloc() : super(ProductInitial([])) {
-    on<AddProductEvent>((event, emit) {});
+    on<AddProductEvent>((event, emit) {
+      try {
+        emit(ProductLoading(state.listProduct));
+        state.listProduct.add(event.product);
+        emit(ProductFinish(state.listProduct));
+      } catch (e) {
+        emit(ProductError(state.listProduct));
+      }
+    });
   }
 }

@@ -12,3 +12,15 @@ abstract class ProductState extends Equatable {
 class ProductInitial extends ProductState {
   ProductInitial(super.listProduct);
 }
+
+class ProductLoading extends ProductState {
+  ProductLoading(super.listProduct);
+}
+
+class ProductFinish extends ProductState {
+  ProductFinish(super.listProduct);
+}
+
+class ProductError extends ProductState {
+  ProductError(super.listProduct);
+}
